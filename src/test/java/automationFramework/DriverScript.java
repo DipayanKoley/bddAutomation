@@ -3,6 +3,7 @@ package automationFramework;
 import java.io.FileNotFoundException;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterSuite;
@@ -13,6 +14,7 @@ import pageObjectModel.ProfilePage;
 import pageObjectModel.TravelFirstPage;
 import utility.Constant;
 import utility.ExcelUtil;
+import utility.Logging;
 
 public class DriverScript
 {
@@ -20,11 +22,17 @@ public class DriverScript
 	
 	public void setProperties() throws FileNotFoundException
 	{
+		DOMConfigurator.configure("log4j.xml");
+		
 		System.setProperty("webdriver.chrome.driver", Constant.driverPath);
 		
 		driver = new ChromeDriver();
 		
+		Logging.info("Chrome Driver set successfully");
+		
 		ExcelUtil.setExcel(Constant.excelFile, Constant.excelSheet);
+		
+		Logging.info("Chrome Driver set successfully");
 	}
 	
 	@Test
@@ -33,6 +41,8 @@ public class DriverScript
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		
 		driver.get(Constant.url);
+		
+		Logging.info("Chrome Launched successfully");
 		
 		driver.manage().window().maximize();
 		
