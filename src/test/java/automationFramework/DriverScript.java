@@ -1,10 +1,10 @@
 package automationFramework;
 
-import java.awt.color.ProfileDataException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
 
 import pageObjectModel.Login;
 import pageObjectModel.ProfilePage;
@@ -15,7 +15,8 @@ public class DriverScript
 {
 	public static WebDriver driver = null;
 	
-	public static void main(String[] args) throws InterruptedException
+	@Test
+	public static void driverScript() throws InterruptedException
 	{
 		System.setProperty("webdriver.chrome.driver", Constant.driverPath);
 		
